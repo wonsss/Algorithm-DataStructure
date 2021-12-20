@@ -1,0 +1,23 @@
+{
+  "name": "algorithm-datastructure",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wonsss/Algorithm-DataStructure.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wonsss/Algorithm-DataStructure/issues"
+  },
+  "homepage": "https://github.com/wonsss/Algorithm-DataStructure#readme",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  }
+}

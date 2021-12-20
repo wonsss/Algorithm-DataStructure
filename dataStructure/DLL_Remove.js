@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 class Node {
   constructor(val) {
     this.val = val;
@@ -116,9 +118,86 @@ class DoublyLinkedList {
     this.length++;
     return true;
   }
+
+  remove(index) {
+    if (index < 0 || index > this.length) return undefined;
+    if (index === 0) return this.shift();
+    if (index === this.length - 1) return this.pop();
+
+    const removedNode = this.get(index);
+    removedNode.prev.next = removedNode.next;
+    removedNode.next.prev = removedNode.prev;
+
+    removedNode.next = null;
+    removedNode.prev = null;
+    this.length--;
+    return removedNode;
+  }
+
+  reverse() {
+    let node = this.head;
+    this.head = this.tail;
+    this.tail = node;
+
+    let next;
+    let prev = null;
+
+    for (let i = 0; i < this.length; i++) {
+      next = node.next;
+      node.next = prev;
+      prev = node;
+      node = next;
+    }
+
+    next = null;
+    node = this.head;
+    for (let i = 0; i < this.length; i++) {
+      prev = node.prev;
+      node.prev = next;
+      next = node;
+      node = prev;
+    }
+  }
 }
 
 const list = new DoublyLinkedList();
-list.push('Harry');
-list.push('Ron');
-list.push('Hermione');
+list.push(5).push(10).push(15).push(20);
+console.log(list);
+/* 
+DoublyLinkedList {
+  head: <ref *1> Node {
+    val: 5,
+    next: Node { val: 10, next: [Node], prev: [Circular *1] },
+    prev: null
+  },
+  tail: <ref *2> Node {
+    val: 20,
+    next: null,
+    prev: Node { val: 15, next: [Circular *2], prev: [Node] }
+  },
+  length: 4
+}
+ */
+list.reverse();
+console.log(list.length); // 4
+console.log(list.head.val); // 20
+console.log(list.head.next.val); // 15
+console.log(list.head.next.next.val); // 10
+console.log(list.head.next.next.next.val); // 5
+console.log(list);
+
+/* 
+DoublyLinkedList {
+  head: <ref *1> Node {
+    val: 20,
+    next: Node { val: 15, next: [Node], prev: [Circular *1] },
+    prev: null
+  },
+  tail: <ref *2> Node {
+    val: 5,
+    next: null,
+    prev: Node { val: 10, next: [Circular *2], prev: [Node] }
+  },
+  length: 4
+} 
+*/
