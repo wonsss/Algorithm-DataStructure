@@ -70,4 +70,5 @@ tree.insert(7);
 tree.insert(7);
 tree.insert(7);
 console.log(tree.find(11));
-console.log(tree.findDony(16));
+
+// x를 누르세요
